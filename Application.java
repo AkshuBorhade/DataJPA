@@ -1,0 +1,38 @@
+package com.akshay;
+
+import java.util.Optional;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.akshay.entity.Book;
+import com.akshay.repo.BookRepository;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext ctxt=
+				SpringApplication.run(Application.class, args);
+		
+		BookRepository repo = ctxt.getBean(BookRepository.class);
+		
+		//Insert the Record
+//		Book b = new Book();
+//		b.setBookId(101);
+//		b.setBookName("Spring");
+//		b.setBookPrice(1000.00);
+//		
+//		repo.save(b);
+//		
+//		System.out.println("Record inserted.......");
+		
+		//Find By Id
+		Optional<Book> findById =repo.findById(101);
+		System.out.println(findById.get());
+		
+	}
+	
+
+}
